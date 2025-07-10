@@ -1,0 +1,16 @@
+<div class="flex flex-column align-items-center ">
+  <h2 class="align-content-center">Connexion</h2>
+  <form (ngSubmit)="onSubmit($event)" #loginForm="ngForm" >
+    <div class="flex flex-column row-gap-4 mt-4">
+      <label for="email">Email:</label>
+      <input id="email" name="email" type="email" [(ngModel)]="email" required pInputText />
+    </div>
+    <div class="flex flex-column row-gap-4 mt-4">
+      <label for="password">Mot de passe:</label>
+      <input id="password" name="password" type="password" [(ngModel)]="password" required pInputText />
+    </div>
+    <button class="mt-4" pButton label="Se connecter" type="submit" [disabled]="loginForm.invalid"></button>
+  </form>
+
+  <p *ngIf="errorMessage" class="error-message mt-4 p-badge-danger ">{{ errorMessage() }}</p>
+</div>

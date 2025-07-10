@@ -1,0 +1,67 @@
+<div class="p-4 max-w-2xl mx-auto">
+  <p-card header="Contact" class="w-full">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <!-- Email -->
+      <div class="field">
+        <label for="email" class="block text-sm font-medium mb-2">Email *</label>
+        <input
+          pInputText
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="Votre email"
+          class="w-full"
+          [class.ng-invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+        />
+        <small
+          *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+          class="text-red-500"
+        >
+          Email requis et doit être valide
+        </small>
+      </div>
+
+      <!-- Message -->
+      <div class="field">
+        <label for="message" class="block text-sm font-medium mb-2">Message *</label>
+        <textarea
+          pInputTextarea
+          id="message"
+          formControlName="message"
+          placeholder="Votre message (max 300 caractères)"
+          rows="6"
+          class="w-full"
+          [class.ng-invalid]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+        ></textarea>
+        <div class="flex justify-between items-center mt-1">
+          <small
+            *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+            class="text-red-500"
+          >
+            Message requis (max 300 caractères)
+          </small>
+          <small class="text-gray-500">
+            {{ messageLength }}/300
+          </small>
+        </div>
+      </div>
+
+      <!-- Boutons -->
+      <div class="flex justify-end space-x-3 pt-4">
+        <p-button
+          type="button"
+          label="Annuler"
+          severity="secondary"
+          (onClick)="onReset()"
+        />
+        <p-button
+          type="submit"
+          label="Envoyer"
+          [disabled]="contactForm.invalid || isSubmitting"
+          [loading]="isSubmitting"
+        />
+      </div>
+    </form>
+  </p-card>
+</div>
+<p-toast />

@@ -1,0 +1,83 @@
+.cart-content {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.cart-item {
+  padding: 1rem;
+  border: 1px solid #e1e5e9;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item-info h4 {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.cart-item-info .text-500 {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.quantity-display {
+  min-width: 3rem;
+  display: inline-block;
+  text-align: center;
+  font-weight: 600;
+  background: white;
+}
+
+.cart-footer {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  border-top: 1px solid #e1e5e9;
+  padding-top: 1rem;
+}
+
+
+::ng-deep .p-button .p-badge {
+  min-width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+::ng-deep .p-badge-danger {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Styles pour le sidebar */
+::ng-deep .p-sidebar .p-sidebar-header {
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  color: white;
+}
+
+::ng-deep .p-sidebar .p-sidebar-header .p-sidebar-header-content {
+  color: white;
+}
+
+::ng-deep .p-sidebar .p-sidebar-header .p-sidebar-close {
+  color: white;
+}
+
+::ng-deep .p-sidebar .p-sidebar-header .p-sidebar-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

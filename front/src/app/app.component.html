@@ -1,0 +1,75 @@
+
+<p-toolbar [style]="{ height: '100px' }">
+  <div class="p-toolbar-group-start">
+    <img src="assets/icons/icon-72x72.png" alt="logo" />
+  </div>
+  <div class="p-toolbar-group-center">
+    {{ title }}
+  </div>
+  <div class="p-toolbar-group-end">
+    <div class="flex items-center space-x-4">
+      <div *ngIf="isLoggedIn" class="flex items-center space-x-3 mr-3">
+        <span class="text-xl text-gray-600 mr-2 my-1">
+          Bonjour, <strong>{{ currentUser?.firstname || currentUser?.username }}</strong>
+        </span>
+          <p-button
+            icon="pi pi-sign-out"
+            severity="secondary"
+            size="small"
+            (onClick)="logout()"
+            pTooltip="Se déconnecter"
+            tooltipPosition="bottom"
+          />
+      </div>
+      <div class="relative mr-3">
+        <i
+          (click)="toggleCart()"
+          class="pi pi-shopping-cart cursor-pointer hover:text-blue-500 transition-colors"
+          [class.opacity-50]="isLoading"
+          style="font-size: 2rem"
+        ></i>
+
+        <span
+          *ngIf="cartCountValue > 0"
+          class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2 py-1 min-w-[1.5rem] text-center"
+        >
+          {{ cartCountValue }}
+        </span>
+
+        <div
+          *ngIf="isLoading"
+          class="absolute -top-1 -right-1 animate-spin"
+        >
+          <i class="pi pi-spinner text-blue-500" style="font-size: 0.8rem"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-toolbar>
+
+<p-splitter [panelSizes]="[20, 80]" [style]="{ height: 'calc(100vh - 100px)' }">
+  <ng-template pTemplate>
+    <div class="w-full">
+      <app-panel-menu />
+    </div>
+  </ng-template>
+  <ng-template pTemplate>
+    <div class="w-full app-content">
+      <router-outlet></router-outlet>
+    </div>
+  </ng-template>
+</p-splitter>
+
+<p-sidebar
+  [(visible)]="isCartOpen"
+  position="right"
+  [style]="{ width: '450px' }"
+  [modal]="true"
+  [dismissible]="true"
+  header="Panier"
+  [closeOnEscape]="true"
+>
+  <app-cart-composant />
+</p-sidebar>
+
+<p-toast></p-toast>
